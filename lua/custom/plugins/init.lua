@@ -2,4 +2,103 @@
 --  I promise not to create any merge conflicts in this directory :)
 --
 -- See the kickstart.nvim README for more information
-return {}
+return {
+  -- note: first, some plugins that don't require any configuration
+
+  -- git related plugins
+  'tpope/vim-fugitive',
+  'tpope/vim-rhubarb',
+
+  -- detect tabstop and shiftwidth automatically
+  'tpope/vim-sleuth',
+
+
+  {
+    -- set lualine as statusline
+    'nvim-lualine/lualine.nvim',
+    -- see `:help lualine.txt`
+    opts = {
+      options = {
+        icons_enabled = false,
+        theme = 'onedark',
+        component_separators = '|',
+        section_separators = '',
+      },
+    },
+  },
+
+  {
+    -- add indentation guides even on blank lines
+    'lukas-reineke/indent-blankline.nvim',
+    -- enable `lukas-reineke/indent-blankline.nvim`
+    -- see `:help indent_blankline.txt`
+    main = "ibl",
+    opts = {},
+  },
+
+  -- "gc" to comment visual regions/lines
+  { 'numtostr/comment.nvim', opts = {} },
+  { 'numtostr/navigator.nvim', config = function() require('Navigator').setup() end },
+
+  -- fuzzy finder (files, lsp, etc)
+  {
+    'nvim-telescope/telescope.nvim',
+    branch = '0.1.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      -- fuzzy finder algorithm which requires local dependencies to be built.
+      -- only load if `make` is available. Make sure you have the system
+      -- requirements installed.
+      {
+        'nvim-telescope/telescope-fzf-native.nvim',
+        -- note: if you are having trouble with this installation,
+        --       refer to the README for telescope-fzf-native for more instructions.
+        build = 'make',
+        cond = function()
+          return vim.fn.executable 'make' == 1
+        end,
+      },
+    },
+  },
+  {
+    'theprimeagen/harpoon',
+    dependencies = {
+      'nvim-lua/plenary.nvim'
+    },
+  },
+  {
+    "folke/which-key.nvim",
+    event = "verylazy",
+    init = function()
+      vim.o.timeout = true
+      vim.o.timeoutlen = 300
+    end,
+    opts = {
+      -- your configuration comes here
+      -- or leave it empty to use the default settings
+      -- refer to the configuration section below
+    }
+  },
+  {
+    -- highlight, edit, and navigate code
+    'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-textobjects',
+    },
+    build = ':tsupdate',
+  },
+
+  -- note: next step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
+  --       these are some example plugins that I've included in the kickstart repository.
+  --       uncomment any of the lines below to enable them.
+  -- require 'kickstart.plugins.autoformat',
+  -- require 'kickstart.plugins.debug',
+
+  -- note: the import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
+  --    you can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
+  --    up-to-date with whatever is in the kickstart repo.
+  --    uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
+  --
+  --    for additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
+  -- { import = 'custom.plugins' },
+  }
