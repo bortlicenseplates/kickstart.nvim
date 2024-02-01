@@ -19,9 +19,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local pluginPath = 'plugins';
--- [[ Configure plugins ]]
+-- [[ Configure pluginst ]]
 require('lazy').setup(pluginPath, {});
-require './config/telescope';
 
 -- [[ Setting options ]]
 require 'options'
@@ -36,10 +35,6 @@ require 'treesitter-setup'
 -- [[ Configure LSP ]]
 -- (Language Server Protocol)
 require 'lsp-setup'
-
--- [[ Configure nvim-cmp ]]
--- (completion)
-require 'cmp-setup'
 
 -- indent blank line setup
 
