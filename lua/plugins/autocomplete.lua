@@ -1,3 +1,10 @@
+local imap = function(keys, func, desc)
+    if desc then
+        desc = 'LSP: ' .. desc
+    end
+
+    vim.keymap.set('i', keys, func, { buffer = bufnr, desc = desc })
+end
 return {
     {
         -- autocompletion
@@ -121,9 +128,7 @@ return {
         cmd = "Copilot",
         event = "InsertEnter",
         config = function()
-            local u = require("config.utils")
-            local cp = require "copilot"
-            cp.setup({
+            require("copilot").setup({
                 panel = {
                     auto_refresh = false,
                     keymap = {
@@ -147,19 +152,14 @@ return {
                 },
             })
 
-
-            vim.keymap.set(
-                "i",
-                "<M-l>",
-                function()
-                    if cp.suggestion.is_visible() then
-                        cp.suggestion.accept()
-                    else
-                        cp.suggestion.next()
-                    end
-                end,
-                { "[copilot] accept or next suggestion" }
-            )
+            local sugg = require "copilot.suggestion"
+            imap("<M-l>", function()
+                if sugg.is_visible() then
+                    sugg.accept()
+                else
+                    sugg.next()
+                end
+            end, "[copilot] accept or next suggestion")
         end
     }
 }
