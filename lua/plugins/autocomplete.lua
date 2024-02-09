@@ -140,7 +140,7 @@ return {
                     },
                 },
                 suggestion = {
-                    auto_trigger = false,
+                    auto_trigger = true,
                     keymap = {
                         accept = false,
                         accept_word = "<M-Right>",
