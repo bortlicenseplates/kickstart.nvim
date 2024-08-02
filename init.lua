@@ -27,18 +27,14 @@ require 'options'
 
 -- [[ Basic Keymaps ]]
 require 'keymaps'
+require 'lsp-config'
 
--- [[ Configure Treesitter ]]
--- (syntax parser for highlighting)
-require 'treesitter-setup'
+-- [[ blank line ]]
+-- require("ibl").setup()
 
--- [[ Configure LSP ]]
--- (Language Server Protocol)
-require 'lsp-setup'
+-- [[ lualine ]]
+require("editor-config")
 
--- indent blank line setup
-
-require("ibl").setup()
-
+require('nx')
 -- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
+-- vim: tsm2 sts=2 sw=2 et

@@ -1,5 +1,5 @@
 return {
-    'beeender/Comrade',
+    'odonckers/comrade',
     dependencies = {
         'Shougo/deoplete.nvim'
     }

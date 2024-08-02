@@ -19,13 +19,21 @@ return {
     },
 
     {
-        -- add indentation guides even on blank lines
-        'lukas-reineke/indent-blankline.nvim',
-        -- enable `lukas-reineke/indent-blankline.nvim`
-        -- see `:help indent_blankline.txt`
-        main = "ibl",
-        opts = {},
+        'justinhj/battery.nvim',
+        dependencies = {
+            'nvim-tree/nvim-web-devicons',
+            'nvim-lua/plenary.nvim'
+        }
     },
+
+    -- {
+    --     -- add indentation guides even on blank lines
+    --     'lukas-reineke/indent-blankline.nvim',
+    --     -- enable `lukas-reineke/indent-blankline.nvim`
+    --     -- see `:help indent_blankline.txt`
+    --     main = "ibl",
+    --     opts = {},
+    -- },
 
     -- "gc" to comment visual regions/lines
     { 'numtostr/comment.nvim', opts = {} }
