@@ -6,7 +6,7 @@ vim.g.maplocalleader = ' '
 
 -- https://github.com/folke/lazy.nvim
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
   vim.fn.system {
     'git',
     'clone',
@@ -15,6 +15,7 @@ if not vim.loop.fs_stat(lazypath) then
     '--branch=stable', -- latest stable release
     lazypath,
   }
+  print('Done');
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -28,13 +29,14 @@ require 'options'
 -- [[ Basic Keymaps ]]
 require 'keymaps'
 require 'lsp-config'
+require 'autocomplete'
 
 -- [[ blank line ]]
 -- require("ibl").setup()
 
 -- [[ lualine ]]
-require("editor-config")
+require "editor-config"
 
-require('nx')
+-- require('nx')
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: tsm2 sts=2 sw=2 et
